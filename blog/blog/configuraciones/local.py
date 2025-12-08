@@ -1,6 +1,6 @@
 from .settings import *
 
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blogdb', # Ej: 'mi_proyecto_db'
@@ -9,4 +9,4 @@ DATABASES = {
         'HOST': 'localhost',             # O la IP de tu servidor MySQL
         'PORT': '3306',                  # Puerto por defecto de MySQL
     }
-}
+}'''
