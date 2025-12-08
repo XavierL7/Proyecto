@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-ez_op%n@f)nf=_1s9=240l4sjl1twml@&x=yh#-e*haw-5o31*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'xavivi.pythonanywhere.com',
+]
 
 AUTH_USER_MODEL = 'usuario.Usuario'
 
