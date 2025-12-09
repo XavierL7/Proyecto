@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.slite3',            # Puerto por defecto de MySQL
+        'NAME': BASE_DIR / 'db.sqlite3',            # Puerto por defecto de MySQL
     }
 }
 
