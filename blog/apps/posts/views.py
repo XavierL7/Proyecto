@@ -1,8 +1,9 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 
-from .forms import ComentarioForm
+from .forms import ComentarioForm, CrearPostForm, NuevaCategoriaForm
 from django.contrib.auth.mixins import LoginRequiredMixin 
-from .models import Post, Comentario
+from .models import Categoria, Post, Comentario
 from django.views.generic.edit import CreateView 
 from django.views.generic import ListView, DetailView
 from django.shortcuts import redirect 
@@ -39,6 +40,26 @@ class PostDetailView(DetailView):
             context['form'] = form
             return self.render_to_response (context)
         
+               
+        
+class PostCreateView(CreateView):
+    model = Post
+    form_class = CrearPostForm
+    template_name = 'posts/crear_post.html'
+    success_url = reverse_lazy('apps.posts:posts')
+    
+
+class CategoriaCreateView(CreateView):
+    model = Categoria
+    form_class = NuevaCategoriaForm
+    template_name = 'posts/crear_categoria.html'
+    def get_success_url(self):
+        next_url = self.request.GET.get('next')
+        if next_url:
+            return next_url
+        else:
+            return reverse_lazy('apps.posts:post_create')    
+                
 class ComentarioCreateView(LoginRequiredMixin, CreateView):
     model = Comentario
     form_class = ComentarioForm
@@ -49,3 +70,5 @@ class ComentarioCreateView(LoginRequiredMixin, CreateView):
         form.instance.usuario = self.request.user
         form.instance.posts_id = self.kwargs['posts_id']
         return super().form_valid(form)        
+    
+    
