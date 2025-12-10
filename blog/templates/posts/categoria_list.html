@@ -6,7 +6,7 @@
         <br>
         <ul>
             {% for categoria in categorias %}
-                <li>{{ categoria.nombre }}
+                <li> {{ categoria.name }}
                 (<a style="color: black;"
                 href="{% url 'apps.posts:categoria_delete' pk=categoria.pk %}">Eliminar</a>)</li>
             {% empty %}
