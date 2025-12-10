@@ -1,5 +1,6 @@
-from blog.apps.posts.models import Comentario, Post
-from blog.apps.usuario.models import Usuario
+
+from apps.posts.models import Comentario, Post
+from .models import Usuario
 from .forms import RegistroUsuarioForm              
 from django.contrib.auth.mixins import LoginRequiredMixin                                                                                                                                                                                                                     
 from django.contrib.auth.views import LoginView, LogoutView
