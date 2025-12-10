@@ -12,7 +12,7 @@
                 <table>{{ posts.texto }}</table>
                 <img src="{{ posts.imagen.url }}" alt="">
 
-                {% if user.is_superuser or request.user|has_group: "Colaborador" %}
+                {% if user.is_superuser or request.user|has_group:"Colaborador" %} 
                 <div class="container-fluid" style="margin-top: 300px;">
                         <a id="boton_post" href="{% url 'apps.posts:post_update' pk-posts.id %}">Modificar Post</a>
                 </div>
