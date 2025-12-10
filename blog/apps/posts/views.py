@@ -83,3 +83,8 @@ class PostUpdateView (LoginRequiredMixin, UpdateView):
     form_class = CrearPostForm
     template_name = 'posts/modificar_post.html'
     success_url = reverse_lazy('apps.posts:posts')
+    
+class PostDeleteView (LoginRequiredMixin, DeleteView):
+    model=Post
+    template_name = 'posts/eliminar_post.html'
+    success_url = reverse_lazy('apps.posts:posts')    
