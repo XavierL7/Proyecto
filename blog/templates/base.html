@@ -44,7 +44,7 @@
                     <div class="dropdown-content">
                         <table>
                             <tr>
-                                {% if user.is_superuser or request.user has_group: "Colaborador" %}
+                                {% if user.is_superuser or request.user|has_group: "Colaborador" %}
                                     <td><a href="{% url 'apps.usuario:usuario_list' %}">Lista de usuarios</a></td>
                                 {% endif %}
                             </tr>
