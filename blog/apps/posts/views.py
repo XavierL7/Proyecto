@@ -58,7 +58,7 @@ class CategoriaCreateView(CreateView):
         if next_url:
             return next_url
         else:
-            return reverse_lazy('apps.posts:post_create')    
+            return reverse_lazy('apps.posts:crear_post')    
                 
 class ComentarioCreateView(LoginRequiredMixin, CreateView):
     model = Comentario
