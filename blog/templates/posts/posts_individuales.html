@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load colaborador_tags %}
 {% block contenido %}
+
 <center>
         <div class="container-fluid" style="margin: 200px;">
                 <table>{{ posts.titulo }}</table>
@@ -9,6 +11,12 @@
                 <br>
                 <table>{{ posts.texto }}</table>
                 <img src="{{ posts.imagen.url }}" alt="">
+
+                {% if user.is_superuser or request.user|has_group: "Colaborador" %}
+                <div class="container-fluid" style="margin-top: 300px;">
+                        <a id="boton_post" href="{% url 'apps.posts:post_update' pk-posts.id %}">Modificar Post</a>
+                </div>
+                {% endif %}
         </div>
 </center>
 <center>
