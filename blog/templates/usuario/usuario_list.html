@@ -6,7 +6,7 @@
         <br>
         <ul>
             {% for usuario in usuarios %}
-                <li> {{ usuario.name }}
+                <li> {{ usuario.username }}
                 (<a style="color: black;"
                 href="{% url 'apps.usuario:usuario_delete' pk=usuario.pk %}">Eliminar</a>)</li>
             {% empty %}
