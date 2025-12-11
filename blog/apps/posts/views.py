@@ -103,4 +103,4 @@ class ComentarioDeleteView (LoginRequiredMixin, DeleteView):
     model = Comentario
     template_name = 'comentario/comentario_confirm_delete.html'
     def get_success_url(self):
-        return reverse('apps.posts:post_individual', args=[self.object.posts.id])
+        return reverse('apps.posts:posts_individuales', args=[self.object.posts.id])
