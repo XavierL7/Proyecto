@@ -2,7 +2,7 @@
 {% load colaborador_tags %}
 {% block contenido %}
 <center>
-    {% if user.is_superuser or request.user|has_group: "Colaborador" %}
+    {% if user.is_superuser or request.user|has_group:"Colaborador" %}
         <div class="container-fluid" style="margin: 400px;">
             <h1>Eliminar usuario</h1><br>
             <p>¿Estás seguro de que quieres eliminar el usuario "{{ object.username }}"?</p><br>
