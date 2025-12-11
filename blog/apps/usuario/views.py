@@ -48,7 +48,7 @@ class UsuarioListView (LoginRequiredMixin, ListView):
 class UsuarioDeleteView(LoginRequiredMixin, DeleteView):
     model = Usuario
     template_name = 'usuario/eliminar_usuario.html'
-    success_url = reverse_lazy('apps.usuario: usuario_list')
+    success_url = reverse_lazy('apps.usuario:usuario_list')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
