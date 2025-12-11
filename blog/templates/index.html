@@ -1,5 +1,76 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
 
 {% block contenido %}
-    <h1> Holi </h1>
+  <!-- Hero principal -->
+  <section class="bg-light text-center py-5">
+    <div class="container">
+      <h1 class="display-4 fw-bold">Bienvenido al Blog de Nutrición 🍏</h1>
+      <p class="lead">Explorá artículos, consejos y recursos sobre alimentación saludable, ejercicio y bienestar integral.</p>
+      <img src="{% static 'img/info.jpg' %}" alt="Logo nutrición" class="img-fluid mt-4 rounded-circle shadow" style="max-width: 180px;" />
+      <div class="mt-4">
+        <a href="{% url 'posts:posts' %}" class="btn btn-primary btn-lg">Ver artículos</a>
+        <a href="{% url 'contacto:contacto' %}" class="btn btn-outline-success btn-lg">Contacto</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección destacada -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">¿Por qué elegir una vida saludable?</h2>
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <img src="{% static 'images/hero.jpg' %}" alt="Alimentación balanceada" class="img-fluid rounded mb-3 shadow">
+        <h5>Alimentación balanceada</h5>
+        <p>Descubrí cómo combinar nutrientes para mantener energía y bienestar durante todo el día.</p>
+      </div>
+      <div class="col-md-4 text-center">
+        <img src="{% static 'images/p-1.jpg' %}" alt="Ejercicio físico" class="img-fluid rounded mb-3 shadow">
+        <h5>Ejercicio físico</h5>
+        <p>Tips y rutinas simples para incorporar movimiento en tu vida cotidiana.</p>
+      </div>
+      <div class="col-md-4 text-center">
+        <img src="{% static 'images/p-2.jpg' %}" alt="Bienestar integral" class="img-fluid rounded mb-3 shadow">
+        <h5>Bienestar integral</h5>
+        <p>La nutrición también impacta en tu estado de ánimo, concentración y descanso.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Últimos posts dinámicos -->
+  <section class="bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Últimos artículos publicados</h2>
+      <div class="row">
+        {% for post in posts %}
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              {% if post.imagen %}
+                <img src="{{ post.imagen.url }}" class="card-img-top" alt="{{ post.titulo }}">
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">{{ post.titulo }}</h5>
+                <p class="card-text">{{ post.subtitulo }}</p>
+                <span class="badge bg-info">{{ post.categoria }}</span>
+              </div>
+              <div class="card-footer text-center">
+                <a href="{% url 'posts:posts_individuales' post.id %}" class="btn btn-primary btn-sm">Ver más</a>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <p class="text-center">Todavía no hay artículos publicados.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="container my-5 text-center">
+    <h2>¿Tenés dudas o sugerencias?</h2>
+    <p>Contactanos para recibir asesoramiento personalizado o compartir tus ideas.</p>
+    <a href="{% url 'contacto:contacto' %}" class="btn btn-success btn-lg">Ir a contacto</a>
+  </section>
 {% endblock %}
