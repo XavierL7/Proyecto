@@ -9,14 +9,15 @@
 
         {% if messages %}
             {% for message in messages %}
-                <div class='message {{ message.tags }}'> {{ message }} </div>
+                <div class="message {{ message.tags }}">{{ message }}</div>
             {% endfor %}
         {% endif %}
+
         <table>
             {% csrf_token %}
             {{ form }}
         </table>
-        <input type="submit" value="enviar">
+        <input type="submit" value="Enviar">
     </form>
 </center>
 

@@ -5,17 +5,17 @@
     {% if user.is_superuser or request.user|has_group:"Colaborador" %}
         <div class="container-fluid" style="margin: 200px;">
             <div class="container-fluid" style="margin-top: 300px;">
-                <a id="boton_post" href="{% url 'apps.posts:crear_categoria' %}">Crear nueva categoría</a>
+                <a id="boton_post" href="{% url 'posts:crear_categoria' %}">Crear nueva categoría</a>
             </div>
             <h1>Crear Post</h1>
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p}}
+                {{ form.as_p }}
                 <input type="submit" value="Guardar">
             </form>
         </div>
     {% else %}
-        <h1>NO TIENES LOS PERMISOS NECESARIOS </h1> 
+        <h1>NO TIENES LOS PERMISOS NECESARIOS</h1> 
     {% endif %}
 </center>
 {% endblock %}
