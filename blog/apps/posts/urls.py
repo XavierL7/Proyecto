@@ -6,7 +6,7 @@ from .views import (
     ComentarioUpdateView, ComentarioDeleteView
 )
 
-app_name = "posts"
+app_name = "apps.posts"
 
 urlpatterns = [
     path('', PostListView.as_view(), name='posts'),

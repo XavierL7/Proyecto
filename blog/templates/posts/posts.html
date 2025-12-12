@@ -7,15 +7,15 @@
 
 {% if user.is_superuser or request.user|has_group:"Colaborador" %}
 <div class="container-fluid" style="margin-top: 300px;">
-    <a id="boton_post" href="{% url 'posts:crear_post' %}">Crear nuevo post</a>
+    <a id="boton_post" href="{% url 'apps.posts:crear_post' %}">Crear nuevo post</a>
 </div>
 {% endif %} 
 
 <h2>Ordenar por:</h2>
 <ul>
-    <a id="boton_post" href="{% url 'posts:posts' %}?orden=reciente">Más reciente</a>
-    <a id="boton_post" href="{% url 'posts:posts' %}?orden=antiguo">Más antiguo</a>
-    <a id="boton_post" href="{% url 'posts:posts' %}?orden=alfabetico">Orden alfabético</a>
+    <a id="boton_post" href="{% url 'apps.posts:posts' %}?orden=reciente">Más reciente</a>
+    <a id="boton_post" href="{% url 'apps.posts:posts' %}?orden=antiguo">Más antiguo</a>
+    <a id="boton_post" href="{% url 'apps.posts:posts' %}?orden=alfabetico">Orden alfabético</a>
 </ul>
 
 {% for i in posts %}
@@ -24,7 +24,7 @@
     <li>{{ i.subtitulo }}</li>
     <li>{{ i.categoria }}</li>
     <br>
-    <a id="boton_post" href="{% url 'posts:posts_individuales' i.id %}">
+    <a id="boton_post" href="{% url 'apps.posts:posts_individuales' i.id %}">
         revisa este post
     </a>    
 {% empty %}

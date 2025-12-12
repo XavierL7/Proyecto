@@ -5,7 +5,7 @@
     {% if user.is_superuser or request.user|has_group:"Colaborador" %} 
         <div class="container-fluid" style="margin: 30px;">
             <a id="boton_post"
-               href="{% url 'posts:crear_categoria' %}?next={% url 'posts:post_update' pk=object.id %}">
+               href="{% url 'apps.posts:crear_categoria' %}?next={% url 'apps.posts:post_update' pk=object.id %}">
                Crear nueva categoría
             </a>
             <br>

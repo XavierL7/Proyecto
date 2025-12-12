@@ -8,7 +8,7 @@
                 <form method="post">
                     {% csrf_token %}
                     <input type="submit" value="Sí, eliminar">
-                    <a style="color: black;" href="{% url 'posts:categoria_list' %}">No, cancelar</a>
+                    <a style="color: black;" href="{% url 'apps.posts:categoria_list' %}">No, cancelar</a>
                 </form>
             </div>
         {% else %}

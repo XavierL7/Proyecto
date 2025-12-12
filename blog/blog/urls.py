@@ -8,9 +8,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),                     
-    path('posts/', include('apps.posts.urls')),        # ✅ solo una vez
-    path('contacto/', include('apps.contacto.urls')),
-    path('usuario/', include('apps.usuario.urls')),   
+    path('posts/', include(('apps.posts.urls', 'apps.posts'), namespace='apps.posts')),
+    path('contacto/', include(('apps.contacto.urls', 'apps.contacto'), namespace='apps.contacto')),
+    path('usuario/', include(('apps.usuario.urls', 'apps.usuario'), namespace='apps.usuario')),   
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 

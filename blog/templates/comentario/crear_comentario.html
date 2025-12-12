@@ -9,10 +9,10 @@
         <ul class="w-100-list-unstyled d-flex justify-content-between mb-8">
             <p>{{ comentario.texto }}</p>
             {% if user.is_superuser or comentario.usuario == user %}
-                <br><a id="boton_post" href="{% url 'posts:comentario_editar' pk=comentario.pk %}?next={{ request.path }}">Editar</a>
+                <br><a id="boton_post" href="{% url 'apps.posts:comentario_editar' pk=comentario.pk %}?next={{ request.path }}">Editar</a>
             {% endif %}
             {% if user.is_superuser or comentario.usuario == user or request.user|has_group:"Colaborador" %}
-                <br><a id="boton_post" href="{% url 'posts:comentario_delete' pk=comentario.pk %}">Eliminar</a>
+                <br><a id="boton_post" href="{% url 'apps.posts:comentario_delete' pk=comentario.pk %}">Eliminar</a>
             {% endif %}
             <br><br>
         </ul>
@@ -32,7 +32,4 @@
         </form>
     {% else %}
         <h2>Debes iniciar sesión o registrarte para comentar</h2>
-        <a id="boton_post" href="{% url 'usuario:login' %}?next={{ request.path }}">Iniciar sesión</a>
-        <input type="hidden" name="next" value="{{ request.path }}">
-    {% endif %}
-</div>
+       

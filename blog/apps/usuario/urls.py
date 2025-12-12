@@ -3,7 +3,7 @@ from . import views
 from .views import LoginUsuario, UsuarioDeleteView, UsuarioListView
 from django.contrib.auth import views as auth_views
 
-app_name = 'usuario'
+app_name = 'apps.usuario'
 
 urlpatterns = [
     path('registrar/', views.RegistrarUsuario.as_view(), name='registrar'),

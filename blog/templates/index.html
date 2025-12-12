@@ -11,8 +11,8 @@
       <p class="lead">Explorá artículos, consejos y recursos sobre alimentación saludable, ejercicio y bienestar integral.</p>
       <img src="{% static 'img/info.jpg' %}" alt="Logo nutrición" class="img-fluid mt-4 rounded-circle shadow" style="max-width: 180px;" />
       <div class="mt-4">
-        <a href="{% url 'posts:posts' %}" class="btn btn-primary btn-lg">Ver artículos</a>
-        <a href="{% url 'contacto:contacto' %}" class="btn btn-outline-success btn-lg">Contacto</a>
+        <a href="{% url 'apps.posts:posts' %}" class="btn btn-primary btn-lg">Ver artículos</a>
+        <a href="{% url 'apps.contacto:contacto' %}" class="btn btn-outline-success btn-lg">Contacto</a>
       </div>
     </div>
   </section>
@@ -56,7 +56,7 @@
                 <span class="badge bg-info">{{ post.categoria }}</span>
               </div>
               <div class="card-footer text-center">
-                <a href="{% url 'posts:posts_individuales' post.id %}" class="btn btn-primary btn-sm">Ver más</a>
+                <a href="{% url 'apps.posts:posts_individuales' post.id %}" class="btn btn-primary btn-sm">Ver más</a>
               </div>
             </div>
           </div>
@@ -71,6 +71,6 @@
   <section class="container my-5 text-center">
     <h2>¿Tenés dudas o sugerencias?</h2>
     <p>Contactanos para recibir asesoramiento personalizado o compartir tus ideas.</p>
-    <a href="{% url 'contacto:contacto' %}" class="btn btn-success btn-lg">Ir a contacto</a>
+    <a href="{% url 'apps.contacto:contacto' %}" class="btn btn-success btn-lg">Ir a contacto</a>
   </section>
 {% endblock %}

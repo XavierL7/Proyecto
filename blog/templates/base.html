@@ -30,11 +30,11 @@
 
             <nav class="nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'index' %}">Inicio</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'contacto:contacto' %}">Contacto</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'posts:posts' %}">Posts</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'apps.contacto:contacto' %}">Contacto</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'apps.posts:posts' %}">Posts</a>
 
                 {% if user.is_authenticated %}
-                    <form method="post" action="{% url 'usuario:logout' %}">
+                    <form method="post" action="{% url 'apps.usuario:logout' %}">
                         {% csrf_token %}
                         <button type="submit">{{ user.username }} Cerrar Sesión</button>
                     </form>
@@ -42,11 +42,11 @@
                         <table>
                             <tr>
                                 {% if user.is_superuser or request.user|has_group:"Colaborador" %}
-                                    <td><a href="{% url 'usuario:usuario_list' %}">Lista de usuarios</a></td>
+                                    <td><a href="{% url 'apps.usuario:usuario_list' %}">Lista de usuarios</a></td>
                                 {% endif %}
                             </tr>
                             <tr>
-                                <td><a href="{% url 'posts:categoria_list' %}">Lista de categorías</a></td>
+                                <td><a href="{% url 'apps.posts:categoria_list' %}">Lista de categorías</a></td>
                             </tr>
                             <tr>
                                 <td><a href="#">Lista de posts</a></td>
@@ -54,7 +54,7 @@
                         </table>
                     </div>
                 {% else %}
-                    <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'usuario:login' %}">Login</a>
+                    <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'apps.usuario:login' %}">Login</a>
                 {% endif %}
             </nav>
         </header>

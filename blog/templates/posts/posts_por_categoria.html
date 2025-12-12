@@ -6,7 +6,7 @@
             <ul>
                 {% for post in posts %}
                     <li>
-                        <a style="color: black;" href="{% url 'posts:posts_individuales' post.id %}">
+                        <a style="color: black;" href="{% url 'apps.posts:posts_individuales' post.id %}">
                             {{ post.titulo }}
                         </a>
                     </li>
