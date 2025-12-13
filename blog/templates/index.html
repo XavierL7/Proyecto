@@ -5,39 +5,26 @@
 
 {% block contenido %}
   
-  <section class="hero text-center py-5" style="background-image: url('{% static 'img/fondo-nutricion.png' %}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-    <div class="container">
-      <h1 class="display-4 fw-bold text-#333">Bienvenido al Blog de Nutrición 🍏</h1>
-      <p class="lead text-#333">Explorá artículos, consejos y recursos sobre alimentación saludable, ejercicio y bienestar integral.</p>
-      <img src="{% static 'img/info.jpg' %}" alt="Logo nutrición" class="img-fluid mt-4 rounded-circle shadow" style="max-width: 180px;" />
-      <div class="mt-4">
-        <a href="{% url 'apps.posts:posts' %}" class="btn btn-primary btn-lg">Ver artículos</a>
-        <a href="{% url 'apps.contacto:contacto' %}" class="btn btn-outline-success btn-lg">Contacto</a>
-      </div>
-    </div>
-  </section>
-
-  
   <section class="container my-5">
-    <h2 class="text-center mb-4">¿Por qué elegir una vida saludable?</h2>
-    <div class="row">
-      <div class="col-md-4 text-center">
-        <img src="{% static 'img/p-0.png' %}" alt="Alimentación balanceada" class="img-fluid rounded mb-3 shadow">
-        <h5>Alimentación balanceada</h5>
-        <p>Descubrí cómo combinar nutrientes para mantener energía y bienestar durante todo el día.</p>
-      </div>
-      <div class="col-md-4 text-center">
-        <img src="{% static 'img/p-1.png' %}" alt="Ejercicio físico" class="img-fluid rounded mb-3 shadow">
-        <h5>Ejercicio físico</h5>
-        <p>Tips y rutinas simples para incorporar movimiento en tu vida cotidiana.</p>
-      </div>
-      <div class="col-md-4 text-center">
-        <img src="{% static 'img/p-2.png' %}" alt="Bienestar integral" class="img-fluid rounded mb-3 shadow">
-        <h5>Bienestar integral</h5>
-        <p>La nutrición también impacta en tu estado de ánimo, concentración y descanso.</p>
-      </div>
+  <h2 class="text-center mb-4">¿Por qué elegir una vida saludable?</h2>
+  <div class="row text-center">
+    <div class="col-md-4">
+      <img src="{% static 'img/ejemplo-1.png' %}" alt="Alimentación balanceada" class="img-fluid rounded mb-3 shadow">
+      <h5>Alimentación balanceada</h5>
+      <p>Descubrí cómo combinar nutrientes para mantener energía y bienestar durante todo el día.</p>
     </div>
-  </section>
+    <div class="col-md-4">
+      <img src="{% static 'img/ejemplo-2.png' %}" alt="Ejercicio físico" class="img-fluid rounded mb-3 shadow">
+      <h5>Ejercicio físico</h5>
+      <p>Tips y rutinas simples para incorporar movimiento en tu vida cotidiana.</p>
+    </div>
+    <div class="col-md-4">
+      <img src="{% static 'img/ejemplo-3.png' %}" alt="Bienestar integral" class="img-fluid rounded mb-3 shadow">
+      <h5>Bienestar integral</h5>
+      <p>La nutrición también impacta en tu estado de ánimo, concentración y descanso.</p>
+    </div>
+  </div>
+</section>
 
   
   <section class="bg-light py-5">
@@ -58,7 +45,7 @@
             </div>
           </div>
         {% empty %}
-          <p class="text-center">Estamos para informarte. Estamos para cuidarte.</p>
+          <p class="text-center">Estamos para informarte.</p>
         {% endfor %}
       </div>
     </div>
