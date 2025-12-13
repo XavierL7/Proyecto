@@ -5,10 +5,10 @@
 
 {% block contenido %}
   
-  <section class="bg-light text-center py-5">
+  <section class="hero text-center py-5" style="background-image: url('{% static 'img/fondo-nutricion.png' %}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="container">
-      <h1 class="display-4 fw-bold">Bienvenido al Blog de Nutrición 🍏</h1>
-      <p class="lead">Explorá artículos, consejos y recursos sobre alimentación saludable, ejercicio y bienestar integral.</p>
+      <h1 class="display-4 fw-bold text-white">Bienvenido al Blog de Nutrición 🍏</h1>
+      <p class="lead text-white">Explorá artículos, consejos y recursos sobre alimentación saludable, ejercicio y bienestar integral.</p>
       <img src="{% static 'img/info.jpg' %}" alt="Logo nutrición" class="img-fluid mt-4 rounded-circle shadow" style="max-width: 180px;" />
       <div class="mt-4">
         <a href="{% url 'apps.posts:posts' %}" class="btn btn-primary btn-lg">Ver artículos</a>
