@@ -28,6 +28,15 @@ class PostListView(ListView):
         context = super().get_context_data(**kwargs)
         context['orden'] = self.request.GET.get('orden', 'reciente')
         return context
+
+class PostHomeView(ListView): # Nueva vista para el inicio
+    model = Post
+    template_name = "index.html" 
+    context_object_name = "posts" 
+    
+    def get_queryset(self):
+        queryset = Post.objects.all().order_by('-fecha')[:3]
+        return queryset
     
 class PostDetailView(DetailView):
     model = Post

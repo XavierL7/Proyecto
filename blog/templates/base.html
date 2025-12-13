@@ -1,6 +1,6 @@
 {% load static %}
 {% load colaborador_tags %}
-
+{% load colaborador_tags %}
 <!doctype html>
 <html lang="es-ar">
     <head>
@@ -49,7 +49,7 @@
                                 <td><a href="{% url 'apps.posts:categoria_list' %}">Lista de categorías</a></td>
                             </tr>
                             <tr>
-                                <td><a href="#">Lista de posts</a></td>
+                                <td><a href="{% url 'apps.posts:posts' %}">Lista de posts</a></td>
                             </tr>
                         </table>
                     </div>

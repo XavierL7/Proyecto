@@ -44,19 +44,16 @@
     <div class="container">
       <h2 class="text-center mb-4">Últimos artículos publicados</h2>
       <div class="row">
-        {% for post in posts %}
+        {% for i in posts %}
           <div class="col-md-4 mb-4">
             <div class="card h-100 shadow-sm">
-              {% if post.imagen %}
-                <img src="{{ post.imagen.url }}" class="card-img-top" alt="{{ post.titulo }}">
-              {% endif %}
               <div class="card-body">
-                <h5 class="card-title">{{ post.titulo }}</h5>
-                <p class="card-text">{{ post.subtitulo }}</p>
-                <span class="badge bg-info">{{ post.categoria }}</span>
+                <h5 class="card-title">{{ i.titulo }}</h5>
+                <p class="card-text">{{ i.subtitulo }}</p>
+                <span class="badge bg-info">{{ i.categoria }}</span>
               </div>
               <div class="card-footer text-center">
-                <a href="{% url 'apps.posts:posts_individuales' post.id %}" class="btn btn-primary btn-sm">Ver más</a>
+                <a href="{% url 'apps.posts:posts_individuales' i.id %}" class="btn btn-primary btn-sm">Ver más</a>
               </div>
             </div>
           </div>
