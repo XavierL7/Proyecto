@@ -6,7 +6,7 @@
                 <h1>Editar comentario</h1>
                 <form method="POST" style="margin-bottom: 10px; margin-top: 100px">
                     {% csrf_token %}
-                    {{ form.as_p}}
+                    {{ form.as_p }}
                     <input type="submit" value="Guardar cambios">
                 </form>
             </div>

@@ -5,7 +5,11 @@
             <h1>Posts por categoria</h1>
             <ul>
                 {% for post in posts %}
-                    <li><a style="color: black;" href="{% url 'apps.posts:posts_individuales' id=post.id %}">{{ post.titulo }}</a></li>
+                    <li>
+                        <a style="color: black;" href="{% url 'apps.posts:posts_individuales' post.id %}">
+                            {{ post.titulo }}
+                        </a>
+                    </li>
                 {% endfor %}
             </ul>
         </div>

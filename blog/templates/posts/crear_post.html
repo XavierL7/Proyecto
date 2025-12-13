@@ -10,12 +10,12 @@
             <h1>Crear Post</h1>
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p}}
+                {{ form.as_p }}
                 <input type="submit" value="Guardar">
             </form>
         </div>
     {% else %}
-        <h1>NO TIENES LOS PERMISOS NECESARIOS </h1> 
+        <h1>NO TIENES LOS PERMISOS NECESARIOS</h1> 
     {% endif %}
 </center>
 {% endblock %}
