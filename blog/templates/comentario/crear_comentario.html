@@ -32,9 +32,12 @@
         </form>
     {% else %}
         <h2>Debes iniciar sesión o registrarte para comentar</h2>
+<<<<<<< HEAD
         <a id="boton_post" href="{% url 'apps.usuario:login' %}?next={{ request.path}}">Iniciar sesión</a>
         <input type="hidden" name="next" value="{{request.path }}">
     {% endif %}
 </form>
 </div>
+=======
+>>>>>>> ccbe5e58413f214cfb828485a519d370142985ec
        
