@@ -9,11 +9,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-<<<<<<< HEAD
     path('', PostHomeView.as_view(), name='index'),                     
-=======
-    path('', index, name='index'),                     
->>>>>>> ccbe5e58413f214cfb828485a519d370142985ec
     path('posts/', include(('apps.posts.urls', 'apps.posts'), namespace='apps.posts')),
     path('contacto/', include(('apps.contacto.urls', 'apps.contacto'), namespace='apps.contacto')),
     path('usuario/', include(('apps.usuario.urls', 'apps.usuario'), namespace='apps.usuario')),   
