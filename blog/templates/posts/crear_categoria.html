@@ -1,21 +1,53 @@
 {% extends 'base.html' %}
+{% block title %}Crear Categoría{% endblock %}
 {% block contenido %}
 {% load colaborador_tags %}
-<center>
-    {% if user.is_superuser or request.user|has_group:"Colaborador" %} 
-        <div class="container-fluid" style="margin: 200px;">
-            <h1>Agregar nueva categoría</h1>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Agregar">
-            </form>
-            <div class="container-fluid" style="margin-top: 300px;">
-                <a id="boton_post" href="{% url 'apps.posts:categoria_list' %}">Listar todas las categorías</a>
-            </div>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            
+            {% if user.is_superuser or request.user|has_group:"Colaborador" %}
+                
+                <div class="card shadow-lg p-4">
+                    <h1 class="card-title text-center mb-4 text-primary">Agregar Nueva Categoría</h1>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label fw-bold">{{ field.label }}</label>
+                                
+                                {{ field }} 
+                                
+                                {% for error in field.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                        
+                        <div class="d-grid mt-4">
+                            <input type="submit" value="Agregar Categoría" class="btn btn-success btn-lg">
+                        </div>
+                    </form>
+                    
+                    <div class="text-center mt-4">
+                        <a href="{% url 'apps.posts:categoria_list' %}" class="btn btn-outline-secondary">
+                            Listar todas las categorías
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="alert alert-danger text-center p-5 shadow-sm" role="alert">
+                    <h1 class="mb-3">Acceso Denegado</h1>
+                    <p class="lead">Solo usuarios con permisos de Administrador o Colaborador pueden acceder a esta página.</p>
+                    <a href="{% url 'index' %}" class="btn btn-danger mt-3">Volver al inicio</a>
+                </div>
+            {% endif %}
+            
         </div>
-    {% else %}
-        <h1>NO TIENES LOS PERMISOS NECESARIOS</h1> 
-    {% endif %}
-</center>
+    </div>
+</div>
+
 {% endblock %}

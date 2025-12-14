@@ -1,18 +1,43 @@
 {% extends 'base.html' %}
+{% block title %}Lista de Usuarios{% endblock %}
+
 {% block contenido %}
-<center>
-    <div class="container-fluid" style="margin: 200px;">
-        <h1>Usuarios</h1>
-        <br>
-        <ul>
-            {% for usuario in usuarios %}
-                <li> {{ usuario.username }}
-                (<a style="color: black;"
-                href="{% url 'apps.usuario:usuario_delete' pk=usuario.pk %}">Eliminar</a>)</li>
-            {% empty %}
-                <li>No hay Usuarios</li>
-            {% endfor %}
-        </ul>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            
+            <div class="card shadow-lg p-4">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-5 text-primary">Gestión de Usuarios</h1>
+                    
+                    {% if usuarios %}
+                        <ul class="list-group list-group-flush">
+                            {% for usuario in usuarios %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    
+                                    <span class="fs-5 text-dark">{{ usuario.username }}</span>
+                                    
+                                    <a 
+                                        href="{% url 'apps.usuario:usuario_delete' pk=usuario.pk %}"
+                                        class="btn btn-sm btn-outline-danger"
+                                        title="Eliminar usuario"
+                                    >
+                                        Eliminar
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="alert alert-info text-center mt-4" role="alert">
+                            No hay usuarios registrados en el sistema.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
     </div>
-</center>
+</div>
+
 {% endblock %}

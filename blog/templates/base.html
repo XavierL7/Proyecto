@@ -14,6 +14,11 @@
             crossorigin="anonymous"
         />
         <style>
+            /* CAMBIO CLAVE 1: Asegura que el HTML y el BODY ocupen toda la altura de la ventana */
+            html, body {
+                height: 100%;
+            }
+            
             /* Estilo simple para el logo, lo centra y limita su tamaño */
             .logo-header-simple {
                 max-width: 250px; 
@@ -30,7 +35,7 @@
         </style>
     </head>
 
-    <body style="background-image: url('{% static 'img/fondo-nutricion.png' %}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <body class="d-flex flex-column" style="background-image: url('{% static 'img/fondo-nutricion.png' %}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
         <header class="bg-white pb-3">
             
             <div class="text-center border-bottom">
@@ -58,8 +63,8 @@
                             <li class="nav-item">
                                 <a class="nav-link nav-link-btn btn btn-outline-secondary" href="{% url 'apps.posts:posts' %}">Posts</a>
                             </li>
-                            <li>
-                                <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'calculadora:calculadora_imc' %}">Calculadora IMC</a>
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-btn btn btn-outline-secondary" href="{% url 'calculadora:calculadora_imc' %}">Calculadora IMC</a>
                             </li>
                         </ul>
 
@@ -73,11 +78,11 @@
                                         {% if user.is_superuser or request.user|has_group:"Colaborador" %}
                                             <li><h6 class="dropdown-header">Administración</h6></li>
                                             <li><a class="dropdown-item" href="{% url 'apps.usuario:usuario_list' %}">Usuarios</a></li>
-                                            <li><a class="dropdown-item" href="{% url 'apps.posts:categoria_list' %}">Categorías</a></li>
+                                            
                                             <li><a class="dropdown-item" href="{% url 'apps.posts:posts' %}">Posts</a></li>
                                             <li><hr class="dropdown-divider"></li>
                                         {% endif %}
-
+                                            <li><a class="dropdown-item" href="{% url 'apps.posts:categoria_list' %}">Categorías</a></li>
                                         
                                         <li>
                                             <form method="post" action="{% url 'apps.usuario:logout' %}" class="p-2">
@@ -89,7 +94,7 @@
                                 </li>
                             {% else %}
                                 <li class="nav-item">
-                                    <a class="nav-link btn btn-success text-white px-3" href="{% url 'apps.usuario:login' %}">Iniciar Sesión</a>
+                                    <a class="btn btn-sm btn-outline-danger w-100" href="{% url 'apps.usuario:login' %}">Iniciar Sesión</a>
                                 </li>
                             {% endif %}
                         </ul>
@@ -98,12 +103,12 @@
             </nav>
         </header>
         
-        <main>
+        <main class="flex-grow-1">
             {% block contenido %}
             {% endblock contenido %}
         </main>
 
-        <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mt-5">
+        <footer id="sticky-footer" class="py-4 bg-dark text-white-50 w-100 flex-shrink-0">
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center">
                     <small>Copyright &copy; Sitioweb</small>

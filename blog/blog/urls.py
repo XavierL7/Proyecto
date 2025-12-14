@@ -14,11 +14,9 @@ urlpatterns = [
     path('contacto/', include(('apps.contacto.urls', 'apps.contacto'), namespace='apps.contacto')),
     path('usuario/', include(('apps.usuario.urls', 'apps.usuario'), namespace='apps.usuario')),   
     path('accounts/', include('django.contrib.auth.urls')),
-<<<<<<< HEAD
     path('sobre-nosotros/', sobre_nosotros, name='sobre_nosotros'),
-=======
     path("calculadora/", include("apps.calculadora.urls")),
->>>>>>> c7692150c1088b74710fef39356be0e91bb89941
+
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

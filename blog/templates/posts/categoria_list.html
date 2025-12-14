@@ -1,19 +1,63 @@
 {% extends 'base.html' %}
+{% load colaborador_tags %}
+{% block title %}Lista de Categorías{% endblock %}
+
 {% block contenido %}
-<center>
-    <div class="container-fluid" style="margin: 200px;">
-        <h1>Categorías</h1>
-        <br>
-        <ul>
-            {% for categoria in categorias %}
-                <li>
-                    {{ categoria.name }}
-                    (<a style="color: black;" href="{% url 'apps.posts:categoria_delete' pk=categoria.pk %}">Eliminar</a>)
-                </li>
-            {% empty %}
-                <li>No hay categorías</li>
-            {% endfor %}
-        </ul>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            
+            <div class="card shadow-lg p-4">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-5 text-primary">Gestión de Categorías</h1>
+                    {% if user.is_superuser or request.user|has_group:"Colaborador" %}
+                        <div class="text-end mb-4">
+                            <a href="{% url 'apps.posts:crear_categoria' %}" class="btn btn-success shadow-sm">
+                                Crear Nueva Categoría
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% if categorias %}
+                        <ul class="list-group list-group-flush">
+                            {% for categoria in categorias %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    
+                                    <span class="fs-5 text-dark">{{ categoria.name }}</span>
+                                    
+                                    <div class="d-flex gap-2">
+                                        
+                                        <a 
+                                            href="{% url 'apps.posts:posts_por_categoria' pk=categoria.pk %}"
+                                            class="btn btn-sm btn-info text-white"
+                                            title="Ver posts de esta categoría"
+                                        >
+                                            Ingresar
+                                        </a>
+
+                                        {% if user.is_superuser or request.user|has_group:"Colaborador" %}
+                                            <a 
+                                                href="{% url 'apps.posts:categoria_delete' pk=categoria.pk %}"
+                                                class="btn btn-sm btn-outline-danger"
+                                                title="Eliminar categoría"
+                                            >
+                                                Eliminar
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="alert alert-info text-center mt-4" role="alert">
+                            No hay categorías creadas.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
     </div>
-</center>
+</div>
+
 {% endblock %}

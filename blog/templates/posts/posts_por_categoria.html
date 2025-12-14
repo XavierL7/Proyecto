@@ -1,17 +1,47 @@
 {% extends 'base.html' %}
+{% block title %}Posts por Categoría{% endblock %}
+
 {% block contenido %}
-    <center>
-        <div class="container-fluid" style="margin: 300px;">
-            <h1>Posts por categoria</h1>
-            <ul>
-                {% for post in posts %}
-                    <li>
-                        <a style="color: black;" href="{% url 'apps.posts:posts_individuales' post.id %}">
-                            {{ post.titulo }}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            
+            <div class="card shadow-lg p-4">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-5 text-primary">Posts por Categoría</h1>
+                    
+                    {% if posts %}
+                        <ul class="list-group list-group-flush">
+                            {% for post in posts %}
+                                <li class="list-group-item list-group-item-action">
+                                    <a href="{% url 'apps.posts:posts_individuales' post.id %}" class="text-decoration-none text-dark d-flex justify-content-between align-items-center py-2">
+                                        
+                                        <span class="fs-5">{{ post.titulo }}</span>
+                                        
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="alert alert-info text-center mt-4" role="alert">
+                            No hay posts disponibles para esta categoría.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                 <a href="{% url 'apps.posts:posts' %}" class="btn btn-success">
+                    ← Ver todos los posts
+                </a>
+            </div>
+
         </div>
-    </center>
+    </div>
+</div>
+
 {% endblock %}

@@ -70,6 +70,15 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     template_name = 'posts/crear_post.html'
     success_url = reverse_lazy('apps.posts:posts')
     
+    def form_valid(self, form):
+        # 1. Asigna el usuario actualmente logueado (request.user) 
+        # al campo 'autor' del objeto Post (form.instance)
+        # Asegúrate de que 'autor' coincide con el nombre del campo en tu modelo Post
+        form.instance.autor = self.request.user
+        
+        # 2. Llama al método original para guardar el objeto en la base de datos
+        return super().form_valid(form)
+    
 class CategoriaCreateView(LoginRequiredMixin, CreateView):
     model = Categoria
     form_class = NuevaCategoriaForm

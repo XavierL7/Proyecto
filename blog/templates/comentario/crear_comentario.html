@@ -1,39 +1,98 @@
 {% load colaborador_tags %}
-<div class="container-fluid" style="margin-bottom: 20px;">
-    <h2>Comentarios</h2>
-    <br><br>
-</div>
-<div class="container-fluid" style="margin-bottom: 20px;"></div>
-    {% for comentario in comentarios %}
-        <table>{{ comentario.usuario }} {{ comentario.fecha }}</table>
-        <ul class="w-100-list-unstyled d-flex justify-content-between mb-8">
-            <p>{{ comentario.texto }}</p>
-            {% if user.is_superuser or comentario.usuario == user %}
-                <br><a id="boton_post" href="{% url 'apps.posts:comentario_editar' pk=comentario.pk %}?next={{ request.path }}">Editar</a>
-            {% endif %}
-            {% if user.is_superuser or comentario.usuario == user or request.user|has_group:"Colaborador" %}
-                <br><a id="boton_post" href="{% url 'apps.posts:comentario_delete' pk=comentario.pk %}">Eliminar</a>
-            {% endif %}
-            <br><br>
-        </ul>
-    {% empty %}
-    <li>No hay comentarios. ¡Puedes ser el primero en comentar!</li>
-    {% endfor %}
-</div>
 
-<a id="comentario"></a>
-<div class="container" style="margin-bottom: 100px;">
-    {% if user.is_authenticated %}
-        <h2>Deja tu comentario</h2>
-        <form method="POST" style="margin-bottom: 10px; margin-top: 100px">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Comentar">
-        </form>
-    {% else %}
-        <h2>Debes iniciar sesión o registrarte para comentar</h2>
-        <a id="boton_post" href="{% url 'apps.usuario:login' %}?next={{ request.path}}">Iniciar sesión</a>
-        <input type="hidden" name="next" value="{{request.path }}">
-    {% endif %}
-</form>
+<style>
+    .django-form p {
+        margin-bottom: 1rem; /* Espacio entre campos */
+    }
+    .django-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: #212529;
+    }
+    /* CLAVE: Aplica estilos a los inputs y textarea dentro del formulario */
+    .django-form input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+    .django-form textarea,
+    .django-form select {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+    }
+    .django-form textarea {
+        min-height: 120px;
+    }
+</style>
+
+<div class="my-5">
+    
+    <h2 class="mb-4 border-bottom pb-2">Comentarios</h2>
+    
+    <div class="card shadow-sm mb-5">
+        <ul class="list-group list-group-flush">
+            {% for comentario in comentarios %}
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-start">
+                        
+                        <div class="me-3">
+                            <p class="mb-1">
+                                <strong class="text-primary">{{ comentario.usuario }}</strong> 
+                                <small class="text-muted ms-2">{{ comentario.fecha|date:"d M, Y H:i" }}</small>
+                            </p>
+                            <p class="mb-0">{{ comentario.texto }}</p>
+                        </div>
+
+                        <div class="d-flex flex-column flex-sm-row gap-2 ms-auto">
+                            {% if user.is_superuser or comentario.usuario == user %}
+                                <a href="{% url 'apps.posts:comentario_editar' pk=comentario.pk %}?next={{ request.path }}" 
+                                   class="btn btn-sm btn-outline-info" title="Editar comentario">
+                                    Editar
+                                </a>
+                            {% endif %}
+                            {% if user.is_superuser or comentario.usuario == user or request.user|has_group:"Colaborador" %}
+                                <a href="{% url 'apps.posts:comentario_delete' pk=comentario.pk %}" 
+                                   class="btn btn-sm btn-outline-danger" title="Eliminar comentario">
+                                    Eliminar
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </li>
+            {% empty %}
+                <li class="list-group-item text-center text-muted p-4">
+                    No hay comentarios. ¡Puedes ser el primero en comentar!
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <a id="comentario"></a>
+    
+    <div class="card p-4 shadow-sm">
+        {% if user.is_authenticated %}
+            <h2 class="h4 mb-4">Deja tu comentario</h2>
+            <form method="POST" class="django-form">
+                {% csrf_token %}
+                
+                {{ form.as_p }}
+                
+                <div class="d-grid mt-3">
+                    <input type="submit" value="Comentar" class="btn btn-primary">
+                </div>
+            </form>
+        {% else %}
+            <h2 class="h4 mb-3 text-warning">Debes iniciar sesión para comentar</h2>
+            <p>
+                <a href="{% url 'apps.usuario:login' %}?next={{ request.path}}" class="btn btn-success me-2">
+                    Iniciar sesión
+                </a>
+            </p>
+            {% endif %}
+    </div>
+
 </div>

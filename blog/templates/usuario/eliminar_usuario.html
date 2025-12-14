@@ -1,29 +1,69 @@
 {% extends 'base.html' %}
 {% load colaborador_tags %}
+{% block title %}Confirmar Eliminación de Usuario{% endblock %}
+
 {% block contenido %}
-<center>
-    {% if user.is_superuser or request.user|has_group:"Colaborador" %}
-        <div class="container-fluid" style="margin: 400px;">
-            <h1>Eliminar usuario</h1><br>
-            <p>¿Estás seguro de que quieres eliminar el usuario "{{ object.username }}"?</p><br>
-            <form method="post">
-                {% csrf_token %}
-                <label for="eliminar_comentarios">¿Desea eliminar también los comentarios del usuario?</label>
-                <input type="checkbox" name="eliminar_comentarios" id="eliminar_comentarios">
-                <br><br>
-                {% if es_colaborador %}
-                    <label for="eliminar_posts">¿Desea eliminar también los posts del usuario?</label>
-                    <input type="checkbox" name="eliminar_posts" id="eliminar_posts">
-                    <br><br>
-                {% endif %}
-                <input type="submit" value="Sí, eliminar">
-                <a style="color: black;" href="{% url 'apps.usuario:usuario_list' %}">No, cancelar</a>
-            </form>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            
+            {% if user.is_superuser or request.user|has_group:"Colaborador" %}
+                
+                <div class="card shadow-lg border-danger">
+                    <div class="card-header bg-danger text-white text-center">
+                        <h1 class="h4 mb-0">Eliminar Usuario</h1>
+                    </div>
+                    
+                    <div class="card-body p-4 text-center">
+                        <p class="lead mb-4">
+                            ¿Estás seguro de que quieres eliminar el usuario 
+                            <strong class="text-danger">"{{ object.username }}"</strong>?
+                        </p>
+                        
+                        <form method="post">
+                            {% csrf_token %}
+                            
+                            <div class="form-check text-start mb-3">
+                                <input class="form-check-input " style= "border-color: #ca1e0bff  " type="checkbox" name="eliminar_comentarios" id="eliminar_comentarios">
+                                <label class="form-check-label" for="eliminar_comentarios">
+                                    Eliminar también los comentarios del usuario.
+                                </label>
+                            </div>
+                            
+                            {% if es_colaborador %}
+                                <div class="form-check text-start mb-4">
+                                    <input class="form-check-input"  style= "border-color: #ca1e0bff  " type="checkbox" name="eliminar_posts" id="eliminar_posts">
+                                    <label class="form-check-label" for="eliminar_posts">
+                                        Eliminar también los posts de este colaborador.
+                                    </label>
+                                </div>
+                            {% endif %}
+                            
+                            <hr>
+                            
+                            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+                                <button type="submit" class="btn btn-danger btn-lg px-4">
+                                    Sí, eliminar permanentemente
+                                </button>
+                                <a href="{% url 'apps.usuario:usuario_list' %}" class="btn btn-outline-secondary btn-lg px-4">
+                                    No, cancelar
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            {% else %}
+                <div class="alert alert-danger text-center p-5 shadow-sm" role="alert">
+                    <h1 class="mb-3">Acceso Denegado</h1>
+                    <p class="lead">Solo usuarios con permisos de **Administrador** o **Colaborador** pueden acceder a esta página.</p>
+                    <a href="{% url 'index' %}" class="btn btn-danger mt-3">Volver al inicio</a>
+                </div>
+            {% endif %}
+            
         </div>
-    {% else %}
-        <div class="container-fluid" style="margin: 300px;">
-            <h1>Solo usuarios con permisos pueden acceder a esta página</h1>
-        </div>
-    {% endif %}
-</center>
+    </div>
+</div>
+
 {% endblock %}

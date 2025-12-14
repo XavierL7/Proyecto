@@ -1,20 +1,52 @@
 {% extends 'base.html' %}
-{% block contenido %}
 {% load colaborador_tags %}
+{% block title %}Eliminar Categoría{% endblock %}
 
-    <center>
-        {% if user.is_superuser or request.user|has_group:"Colaborador" %} 
-            <div class="container-fluid" style="margin: 300px;">
-                <h1>Eliminar Categoría</h1>
-                <p>¿Estás seguro de que quieres eliminar la categoría "{{ object.nombre }}"?</p>
-                <form method="post">
-                    {% csrf_token %}
-                    <input type="submit" value="Sí, eliminar">
-                    <a style="color: black;" href="{% url 'apps.posts:categoria_list' %}">No, cancelar</a>
-                </form>
-            </div>
-        {% else %}
-            <h1>NO TIENES LOS PERMISOS NECESARIOS</h1> 
-        {% endif %}
-    </center>
+{% block contenido %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            
+            {% if user.is_superuser or request.user|has_group:"Colaborador" %}
+                
+                <div class="card shadow-lg border-danger">
+                    <div class="card-header bg-danger text-white text-center">
+                        <h1 class="h4 mb-0">Eliminar Categoría</h1>
+                    </div>
+                    
+                    <div class="card-body p-4 text-center">
+                        <p class="lead mb-4">
+                            ¿Estás seguro de que quieres eliminar esta categoría?
+                            <br>
+                            Esta acción es permanente.
+                        </p>
+                        
+                        <form method="post">
+                            {% csrf_token %}
+                            
+                            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+                                <button type="submit" class="btn btn-danger btn-lg px-4">
+                                    Sí, eliminar
+                                </button>
+                                <a href="{% url 'apps.posts:categoria_list' %}" class="btn btn-outline-secondary btn-lg px-4">
+                                    No, cancelar
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            {% else %}
+                <div class="alert alert-danger text-center p-5 shadow-sm" role="alert">
+                    <h1 class="mb-3">Acceso Denegado</h1>
+                    <p class="lead">Solo usuarios con permisos de Administrador o Colaborador pueden acceder a esta página.</p>
+                    <a href="{% url 'index' %}" class="btn btn-danger mt-3">Volver al inicio</a>
+                </div>
+            {% endif %}
+            
+        </div>
+    </div>
+</div>
+
 {% endblock %}

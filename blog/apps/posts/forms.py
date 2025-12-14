@@ -11,6 +11,7 @@ class CrearPostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
+        exclude = ('autor',)
     
 class NuevaCategoriaForm (forms.ModelForm):
     class Meta:
