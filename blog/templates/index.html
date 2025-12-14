@@ -10,37 +10,43 @@
   <div class="row text-center">
     <div class="col-md-4">
       <img src="{% static 'img/ejemplo-1.png' %}?v=2" alt="Alimentación balanceada" class="img-fluid rounded mb-3 shadow">
-      <h5>Alimentación balanceada</h5>
-      <p>Descubrí cómo combinar nutrientes para mantener energía y bienestar durante todo el día.</p>
+      <div style="background-color: #ffffffa4">
+        <h5>Alimentación balanceada</h5>
+        <p>Descubrí cómo combinar nutrientes para mantener energía y bienestar durante todo el día.</p>
+      </div>  
     </div>
     <div class="col-md-4">
       <img src="{% static 'img/ejemplo-2.png' %}?v=2" alt="Ejercicio físico" class="img-fluid rounded mb-3 shadow">
-      <h5>Ejercicio físico</h5>
-      <p>Tips y rutinas simples para incorporar movimiento en tu vida cotidiana.</p>
+      <div style="background-color: #ffffffa4">
+        <h5>Ejercicio físico</h5>
+        <p>Tips y rutinas simples para incorporar movimiento en tu vida cotidiana.</p>
+      </div>
     </div>
-    <div class="col-md-4">
-      <img src="{% static 'img/ejemplo-3.png' %}?v=2" alt="Bienestar integral" class="img-fluid rounded mb-3 shadow">
-      <h5>Bienestar integral</h5>
-      <p>La nutrición también impacta en tu estado de ánimo, concentración y descanso.</p>
+    <div class="col-md-4" >
+      <img src="{% static 'img/ejemplo-3.png' %}?v=2" alt="Bienestar integral" class="img-fluid rounded mb-3 shadow " >
+      <div style="background-color: #ffffffa4">
+        <h5>Bienestar integral</h5>
+        <p>La nutrición también impacta en tu estado de ánimo, concentración y descanso.</p>
+      </div>
     </div>
   </div>
 </section>
 
   
-  <section class="bg-light py-5">
-    <div class="container">
+  <section class=" py-5" style="background-color: #ffffffa4">
+    <div class="container" >
       <h2 class="text-center mb-4">La mejor informacion para los mejores resultados</h2>
       <div class="row">
         {% for i in posts %}
           <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
+            <div class="card h-100 shadow-sm " >
               <div class="card-body">
                 <h5 class="card-title">{{ i.titulo }}</h5>
                 <p class="card-text">{{ i.subtitulo }}</p>
                 <span class="badge bg-info">{{ i.categoria }}</span>
               </div>
               <div class="card-footer text-center">
-                <a href="{% url 'apps.posts:posts_individuales' i.id %}" class="btn btn-primary btn-sm">Ver más</a>
+                <a href="{% url 'apps.posts:posts_individuales' i.id %}" class="btn btn-sm btn-success">Ver más</a>
               </div>
             </div>
           </div>

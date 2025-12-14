@@ -1,45 +1,57 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load colaborador_tags %}
+{% block title %}Todos los Posts{% endblock %}
+
 {% block contenido %}
 
-<div class="container-fluid d-flex flex-column justify-content-center align-items-center text-center"
-     style="min-height: 100vh; 
-            background-image: url('{% static 'img/fondo-nutricion-post.png' %}'); 
-            background-size: cover; 
-            background-position: center; 
-            background-repeat: no-repeat;">
+<div class="container my-5">
+    
+    <h1 class="text-center mb-5 display-4 " style="background-color: #ffffffff">Últimos Artículos de Nutrición</h1>
 
-  {% if user.is_superuser or request.user|has_group:"Colaborador" %}
-  <div class="mb-5">
-      <a id="boton_post" href="{% url 'apps.posts:crear_post' %}">Crear nuevo post</a>
-  </div>
-  {% endif %} 
+    <div class="row mb-4 align-items-center border-bottom pb-3">
+        
+        <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
+            {% if user.is_superuser or request.user|has_group:"Colaborador" %}
+                <a href="{% url 'apps.posts:crear_post' %}" class="btn btn-success btn-lg shadow-sm">
+                    Crear nuevo post
+                </a>
+            {% endif %} 
+        </div>
 
-  <h2 class="text-white">Ordenar por:</h2>
-  <ul>
-      <a id="boton_post" href="{% url 'apps.posts:posts' %}?orden=reciente">Más reciente</a>
-      <a id="boton_post" href="{% url 'apps.posts:posts' %}?orden=antiguo">Más antiguo</a>
-      <a id="boton_post" href="{% url 'apps.posts:posts' %}?orden=alfabetico">Orden alfabético</a>
-  </ul>
-
-  {% for i in posts %}
-      <br>
-      <li class="text-white">{{ i.titulo }}</li>
-      <li class="text-white">{{ i.subtitulo }}</li>
-      <li class="text-white">{{ i.categoria }}</li>
-      <br>
-      <a id="boton_post" href="{% url 'apps.posts:posts_individuales' i.id %}">
-          revisa este post
-      </a>    
-  {% empty %}
-      <h1 class="text-white">No hay registros</h1>
-  {% endfor %}
-
-</div>
-
-<br>
-<h1>Ahora estamos en otro html</h1>
-<h1>donde pongo otro contenido</h1>
+        <div class="col-md-6 text-md-end text-center">
+            <span class="fw-bold me-2">Ordenar por:</span>
+            <div class="btn-group" role="group" aria-label="Opciones de ordenamiento">
+                <a href="{% url 'apps.posts:posts' %}?orden=reciente" class="btn btn-outline-success btn-sm ">Más reciente</a>
+                <a href="{% url 'apps.posts:posts' %}?orden=antiguo" class="btn btn-outline-success btn-sm">Más antiguo</a>
+                <a href="{% url 'apps.posts:posts' %}?orden=alfabetico" class="btn btn-outline-success btn-sm">Alfabético</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for i in posts %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ i.titulo }}</h5>
+                    <p class="card-text text-muted">{{ i.subtitulo }}</p>
+                    <span class="badge bg-info text-dark">{{ i.categoria }}</span>
+                </div>
+                <div class="card-footer bg-light border-0 text-center">
+                    <a href="{% url 'apps.posts:posts_individuales' i.id %}" class="btn btn-success w-75">
+                        Leer Artículo
+                    </a>    
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <h1 class="text-danger">Aún no hay artículos publicados.</h1>
+            <p class="lead">Vuelve pronto para ver la información más reciente.</p>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+                                                                                                                                    
 
 {% endblock %}
