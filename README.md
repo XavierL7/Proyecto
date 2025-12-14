@@ -1,4 +1,4 @@
-![R1](https://github.com/XavierL7/Proyecto/tree/master/blog/static/img/R1 "R1")
+![R1](blog/static/img/R1.png "R1")
 
 ### 🎯 Presentación del proyecto final
 
@@ -24,10 +24,10 @@ El proyecto se construyó utilizando:
 - Base de datos SQLite (local)  
 - Publicación en PythonAnywhere
 #### Vistas del blog
-![Inicio](https://github.com/XavierL7/Proyecto/tree/master/blog/static/img/In.png "Inicio")
-![post](https://github.com/XavierL7/Proyecto/tree/master/blog/static/img/post.png "post")
-![contacto](https://github.com/XavierL7/Proyecto/tree/master/blog/static/img/contacto.png "contacto")
-![calculadora](https://github.com/XavierL7/Proyecto/tree/master/blog/static/img/calcu.png "calculadora")
+![Inicio](blog/static/img/In.png "Inicio")
+![post](blog/static/img/post.png "post")
+![contacto](blog/static/img/contacto.png "contacto")
+![calculadora](blog/static/img/calcu.png "calculadora")
 
 ### 👥 Integrantes
 Equipo de Desarrollo:
@@ -36,3 +36,4 @@ Equipo de Desarrollo:
 - Maia Valentina Zalazar
 - Figueroa R. Sebastian
 - Gonzalo Alzu
+
