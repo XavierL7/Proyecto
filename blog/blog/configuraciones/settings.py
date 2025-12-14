@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'apps.posts',
     'apps.contacto',
     'apps.usuario',
+    'apps.calculadora',
 ]
 
 MIDDLEWARE = [

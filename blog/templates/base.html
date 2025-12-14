@@ -32,6 +32,8 @@
                 <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'index' %}">Inicio</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'apps.contacto:contacto' %}">Contacto</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'apps.posts:posts' %}">Posts</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'calculadora:calculadora_imc' %}">Calculadora IMC</a>
+
 
                 {% if user.is_authenticated %}
                     <form method="post" action="{% url 'apps.usuario:logout' %}">
